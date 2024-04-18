@@ -61,9 +61,12 @@ repos:
       sub_dir: cpp/libcudf_kafka
       depends: [cudf]
   python:
+    - name: libcudf
+      sub_dir: python/libcudf
+      depends: [libcudf]
     - name: cudf
       sub_dir: python/cudf
-      depends: [cudf]
+      depends: [libcudf, cudf]
       args: {cmake: -DFIND_CUDF_CPP=ON}
     - name: dask_cudf
       sub_dir: python/dask_cudf
