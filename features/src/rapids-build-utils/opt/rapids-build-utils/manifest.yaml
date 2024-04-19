@@ -63,10 +63,10 @@ repos:
   python:
     - name: libcudf
       sub_dir: python/libcudf
-      depends: [libcudf]
+      depends: [cudf]
     - name: cudf
       sub_dir: python/cudf
-      depends: [libcudf, cudf]
+      depends: [cudf]
       args: {cmake: -DFIND_CUDF_CPP=ON}
     - name: dask_cudf
       sub_dir: python/dask_cudf
