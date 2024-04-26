@@ -40,6 +40,7 @@ jobs:
         # Need Python 3.11 for the buffer protocol in the limited API
         export PYTHON_VERSION="3.11"
         clone-all -j$(nproc) -v -q --clone-upstream --single-branch --shallow-submodules --no-update-env;
+        clone-rmm --upstream vyas/rmm --branch feat/py_limited_api_compat --clone-upstream
         rapids-generate-scripts
         . rapids-make-${PYTHON_PACKAGE_MANAGER}-env
         # The latest version of this branch includes both my patches (required
@@ -49,11 +50,6 @@ jobs:
         python -m pip install git+https://github.com/cython/cython.git@limited-api-preview
         # Need to install my branch of scikit-build-core for the way I'm specifying CMAKE_CXX_FLAGS via CMAKE_ARGS to work
         python -m pip install git+https://github.com/vyasr/scikit-build-core.git@fix/cmake_args_quoted_spaces
-
-        # Point to the rmm branch with the fixes
-        git -C ~/rmm remote add vyasr https://github.com/vyasr/rmm.git
-        git -C ~/rmm fetch vyasr
-        git -C ~/rmm checkout feat/py_limited_api_compat
 
         build-all \
           -v \
