@@ -50,6 +50,11 @@ jobs:
         # Need to install my branch of scikit-build-core for the way I'm specifying CMAKE_CXX_FLAGS via CMAKE_ARGS to work
         python -m pip install git+https://github.com/vyasr/scikit-build-core.git@fix/cmake_args_quoted_spaces
 
+        # Point to the rmm branch with the fixes
+        git -C ~/rmm remote add vyasr https://github.com/vyasr/rmm.git
+        git -C ~/rmm fetch vyasr
+        git -C ~/rmm checkout feat/py_limited_api_compat
+
         build-all \
           -v \
           -j$(nproc --ignore=1) \
