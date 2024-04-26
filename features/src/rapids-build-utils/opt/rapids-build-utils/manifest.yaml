@@ -85,11 +85,11 @@ repos:
     - name: pylibraft
       sub_dir: python/pylibraft
       depends: [raft]
-      args: {cmake: -DFIND_RAFT_CPP=ON}
+      args: {cmake: -DFIND_RAFT_CPP=ON -DCMAKE_CXX_FLAGS="'-DPy_LIMITED_API=0x030B0000 -DCYTHON_LIMITED_API=1'"}
     - name: raft-dask
       sub_dir: python/raft-dask
       depends: [raft]
-      args: {cmake: -DFIND_RAFT_CPP=ON}
+      args: {cmake: -DFIND_RAFT_CPP=ON -DCMAKE_CXX_FLAGS="'-DPy_LIMITED_API=0x030B0000 -DCYTHON_LIMITED_API=1'"}
 
 - name: cuvs
   path: cuvs
